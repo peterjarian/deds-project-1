@@ -1,0 +1,35 @@
+{
+  "name": "deds-project-1",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.black-formatter",
+        "ms-toolsai.jupyter",
+        "ms-python.python",
+        "ms-azuretools.vscode-docker",
+        "dprint.dprint"
+      ],
+
+      "settings": {
+        "files.insertFinalNewline": true,
+        "files.eol": "\n",
+
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "dprint.dprint",
+
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter"
+        },
+
+        "notebook.defaultFormatter": "ms-python.black-formatter",
+        "notebook.formatOnSave.enabled": true,
+        "jupyter.notebookFileRoot": "${workspaceFolder}",
+        "jupyter.alwaysTrustNotebooks": true
+      }
+    }
+  },
+  "postCreateCommand": "./scripts/prepare-kernel.sh"
+}
