@@ -4,6 +4,7 @@ ARG USER=vscode
 ARG PYTHON_VERSION="3.12"
 
 RUN sudo apt-get update
+RUN sudo apt install -y unixodbc unixodbc-dev mdbtools odbcinst odbc-mdbtools
 
 USER $USER
 ARG HOME="/home/$USER"

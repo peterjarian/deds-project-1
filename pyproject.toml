@@ -3,11 +3,13 @@ name = "deds-project-1"
 version = "0.0.0"
 description = ""
 authors = [
-    {name = "Your Name",email = "you@example.com"}
+  { name = "Your Name", email = "you@example.com" },
 ]
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+  "pyodbc (>=5.2.0,<6.0.0)",
+  "pandas (>=2.2.3,<3.0.0)",
 ]
 
 [build-system]
@@ -22,3 +24,6 @@ pre-commit = "^4.2.0"
 
 [tool.poetry]
 package-mode = false
+
+[tool.black]
+line-length = 120
