@@ -4,16 +4,16 @@ services:
     build:
       dockerfile: ./docker/staging-area/Dockerfile
     ports:
-      - '5432:5432'
+      - "5432:5432"
   data-warehouse:
     container_name: data-warehouse
     build:
       dockerfile: ./docker/data-warehouse/Dockerfile
     ports:
-      - '5433:5433'
+      - "5433:5433"
   northwind:
     container_name: northwind
     build:
       dockerfile: ./docker/northwind/Dockerfile
     ports:
-      - '1433:1433'
+      - "1433:1433"
