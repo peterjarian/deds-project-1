@@ -1,0 +1,1 @@
+-- Create the tables for the data warehouse
