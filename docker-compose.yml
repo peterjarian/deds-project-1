@@ -1,0 +1,7 @@
+services:
+  staging-area:
+    container_name: staging-area
+    build:
+      dockerfile: ./docker/staging-area/Dockerfile
+    ports:
+      - '5432:5432'
