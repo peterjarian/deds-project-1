@@ -124,10 +124,10 @@ CREATE TABLE SalesTerritory (
   `Name` VARCHAR(255),
   CountryRegionCode VARCHAR(255),
   `Group` VARCHAR(255),
-  SalesYTD DECIMAL(65, 4),
-  SalesLastYear DECIMAL(65, 4),
-  CostYTD DECIMAL(65, 4),
-  CostLastYear DECIMAL(65, 4),
+  SalesYTD DECIMAL(100, 4),
+  SalesLastYear DECIMAL(100, 4),
+  CostYTD DECIMAL(100, 4),
+  CostLastYear DECIMAL(100, 4),
   ModifiedDate TIMESTAMP
 );
 
@@ -140,7 +140,7 @@ CREATE TABLE Store (
 );
 
 CREATE TABLE Customer (
-  CustomerID INT PRIMARY KEY,
+  CustomerID INT PRIMARY KEY ,
   PersonID INT,
   StoreID INT,
   TerritoryID INT,
@@ -165,7 +165,7 @@ CREATE TABLE Customer (
   FOREIGN KEY (TerritoryID) REFERENCES SalesTerritory(TerritoryID)
 );
 
-CREATE TABLE `Address` (
+CREATE TABLE Address (
   AddressID INT PRIMARY KEY,
   AddressLine1 VARCHAR(255),
   AddressLine2 VARCHAR(255),
@@ -181,7 +181,7 @@ CREATE TABLE ProductCategory (
   ProductCategoryID INT PRIMARY KEY,
   `Name` VARCHAR(255),
   ModifiedDate TIMESTAMP,
-  `Description` VARCHAR(255)
+  `description` VARCHAR(255)
 );
 
 CREATE TABLE Product (
@@ -193,9 +193,9 @@ CREATE TABLE Product (
   Color VARCHAR(255),
   SafetyStockLevel INT,
   ReorderPoint INT,
-  StandardCost DECIMAL(65, 4),
-  ListPrice DECIMAL(65, 4),
-  Size VARCHAR(255),
+  StandardCost DECIMAL(100, 4),
+  ListPrice DECIMAL(100, 4),
+  `Size` VARCHAR(255),
   SizeUnitMeasureCode VARCHAR(255),
   WeightUnitMeasureCode VARCHAR(255),
   `Weight` NUMERIC(8, 2),
@@ -240,10 +240,10 @@ CREATE TABLE PurchaseOrderHeader (
   VendorID INT,
   OrderDate TIMESTAMP,
   ShipDate TIMESTAMP,
-  SubTotal DECIMAL(65, 4),
-  TaxAmt DECIMAL(65, 4),
-  Freight DECIMAL(65, 4),
-  TotalDue DECIMAL(65, 4),
+  SubTotal DECIMAL(100, 4),
+  TaxAmt DECIMAL(100, 4),
+  Freight DECIMAL(100, 4),
+  TotalDue DECIMAL(100, 4),
   ModifiedDate TIMESTAMP,
   FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID),
   FOREIGN KEY (VendorID) REFERENCES Vendor(VendorID)
@@ -255,8 +255,8 @@ CREATE TABLE PurchaseOrderDetail (
   DueDate TIMESTAMP,
   OrderQty INT,
   ProductID INT,
-  UnitPrice DECIMAL(65, 4),
-  LineTotal DECIMAL(65, 4),
+  UnitPrice DECIMAL(100, 4),
+  LineTotal DECIMAL(100, 4),
   ReceivedQty NUMERIC(8,2),
   RejectedQty NUMERIC(8,2),
   StockedQty NUMERIC(9,2),
@@ -285,10 +285,10 @@ CREATE TABLE SalesOrderHeader (
   ShipMethodID INT,
   CreditCardID INT,
   CreditCardApprovalCode VARCHAR(255),
-  SubTotal DECIMAL(65, 4),
-  TaxAmt DECIMAL(65, 4),
-  Freight DECIMAL(65, 4),
-  TotalDue DECIMAL(65, 4),
+  SubTotal DECIMAL(100, 4),
+  TaxAmt DECIMAL(100, 4),
+  Freight DECIMAL(100, 4),
+  TotalDue DECIMAL(100, 4),
   Comment VARCHAR(255),
   ModifiedDate TIMESTAMP,
   RequiredDate DATETIME,
@@ -330,8 +330,8 @@ CREATE TABLE SalesOrderDetail (
   CarrierTrackingNumber VARCHAR(255),
   OrderQty INT,
   ProductID INT,
-  UnitPrice DECIMAL(65, 4),
-  UnitPriceDiscount DECIMAL(65, 4),
+  UnitPrice DECIMAL(100, 4),
+  UnitPriceDiscount DECIMAL(100, 4),
   LineTotal NUMERIC(28,6),
   ModifiedDate TIMESTAMP,
   Discount DECIMAL(10, 2),
@@ -340,4 +340,4 @@ CREATE TABLE SalesOrderDetail (
   PRIMARY KEY (SalesOrderID, SalesOrderDetailID),
   FOREIGN KEY (SalesOrderID) REFERENCES SalesOrderHeader(SalesOrderID),
   FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
-);
+);  
