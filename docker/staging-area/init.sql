@@ -1,1 +1,0 @@
--- Create the tables for the staging area
