@@ -4,7 +4,7 @@ services:
     build:
       dockerfile: ./docker/staging-area/Dockerfile
     ports:
-      - "5432:5432"
+      - "3306:3306"
   data-warehouse:
     container_name: data-warehouse
     build:
