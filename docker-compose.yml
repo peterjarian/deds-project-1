@@ -10,7 +10,7 @@ services:
     build:
       dockerfile: ./docker/data-warehouse/Dockerfile
     ports:
-      - "5433:5433"
+      - "3307:3307"
   northwind:
     container_name: northwind
     build:

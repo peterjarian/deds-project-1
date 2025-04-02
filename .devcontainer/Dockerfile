@@ -18,7 +18,8 @@ RUN sudo ACCEPT_EULA=Y apt-get install -y \
     odbc-mdbtools \
     sqlite3 \
     libsqlite3-dev \
-    msodbcsql18
+    msodbcsql18 \
+    libffi-dev
 
 USER $USER
 ARG HOME="/home/$USER"
