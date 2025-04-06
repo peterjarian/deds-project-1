@@ -58,7 +58,7 @@ CREATE TABLE Employee (
   street VARCHAR(255),
   `state` VARCHAR(255),
   zip_code INT,
-  phone INT,
+  phone varchar(255),
   `status` VARCHAR(255),
   ss_number INT,
   salary INT,
