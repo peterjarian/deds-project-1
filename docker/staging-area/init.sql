@@ -52,12 +52,12 @@ CREATE TABLE Employee (
   Country VARCHAR(255),
   HomePhone VARCHAR(255),
   Extension VARCHAR(255),
-  Notes VARCHAR(255),
+  Notes TEXT,
   ReportsTo INT,
   manager_id INT,
   street VARCHAR(255),
   `state` VARCHAR(255),
-  zip_code INT,
+  zip_code VARCHAR(255),
   phone varchar(255),
   `status` VARCHAR(255),
   ss_number INT,
@@ -66,8 +66,7 @@ CREATE TABLE Employee (
   bene_life_ins VARCHAR(1),
   bene_day_care VARCHAR(1),
   sex VARCHAR(1),
-  FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
-  FOREIGN KEY (ReportsTo) REFERENCES Employee(EmployeeID)
+  FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID)
 );
 
 CREATE TABLE Region (
@@ -91,10 +90,10 @@ CREATE TABLE EmployeeTerritories (
 );
 
 CREATE TABLE Bonus (
-  emp_id INT,
+  BonusID INT PRIMARY KEY AUTO_INCREMENT,
+  emp_id INT, 
   bonus_date DATE,
   bonus_amount INT,
-  PRIMARY KEY (emp_id, bonus_date),
   FOREIGN KEY (emp_id) REFERENCES Employee(EmployeeID)
 );
 
@@ -140,7 +139,7 @@ CREATE TABLE Store (
 );
 
 CREATE TABLE Customer (
-  CustomerID INT PRIMARY KEY ,
+  CustomerID varchar(255) PRIMARY KEY ,
   PersonID INT,
   StoreID INT,
   TerritoryID INT,
@@ -153,7 +152,7 @@ CREATE TABLE Customer (
   Region VARCHAR(255),
   PostalCode VARCHAR(255),
   Country VARCHAR(255),
-  Phone int,
+  Phone varchar(255),
   Fax VARCHAR(255),
   ModifiedDate TIMESTAMP,
   fname VARCHAR(255),
@@ -277,7 +276,7 @@ CREATE TABLE SalesOrderHeader (
   SalesOrderNumber VARCHAR(255),
   PurchaseOrderNumber VARCHAR(255),
   AccountNumber VARCHAR(255),
-  CustomerID INT,
+  CustomerID varchar(255),
   EmployeeID INT,
   TerritoryID INT,
   BillToAddressID INT,
@@ -306,7 +305,6 @@ CREATE TABLE SalesOrderHeader (
   FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
   FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID),
   FOREIGN KEY (TerritoryID) REFERENCES SalesTerritory(TerritoryID),
-  FOREIGN KEY (BillToAddressID) REFERENCES Address(AddressID),
   FOREIGN KEY (ShipToAddressID) REFERENCES Address(AddressID)
 );
 
@@ -337,7 +335,7 @@ CREATE TABLE SalesOrderDetail (
   Discount DECIMAL(10, 2),
   ship_date TEXT,
   line_id INT,
-  PRIMARY KEY (SalesOrderID, SalesOrderDetailID),
+  PRIMARY KEY (SalesOrderDetailID),
   FOREIGN KEY (SalesOrderID) REFERENCES SalesOrderHeader(SalesOrderID),
   FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
 );  
