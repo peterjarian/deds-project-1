@@ -1,8 +1,10 @@
-FROM postgres:latest
+FROM mysql:latest
 
-ENV POSTGRES_USER=deds
-ENV POSTGRES_PASSWORD=deds
+ENV MYSQL_ROOT_PASSWORD=deds
+ENV MYSQL_USER=deds
+ENV MYSQL_PASSWORD=deds
+ENV MYSQL_DATABASE=warehouse
 
-COPY ./docker/data-warehouse/init.sql /docker-entrypoint-initdb.d/
+COPY ./docker/data-warehouse/init.sql /docker-entrypoint-initdb.d/init.sql
 
-EXPOSE 5433
+EXPOSE 3307

@@ -19,7 +19,8 @@ RUN sudo ACCEPT_EULA=Y apt-get install -y \
     sqlite3 \
     libsqlite3-dev \
     msodbcsql18 \
-    libffi-dev
+    libffi-dev \
+    python-mysqldb
 
 USER $USER
 ARG HOME="/home/$USER"

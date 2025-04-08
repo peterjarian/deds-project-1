@@ -1,11 +1,11 @@
 CREATE TABLE Shippers (
-  ShipperID INT PRIMARY KEY,
+  ShipperID CHAR(36) PRIMARY KEY,
   CompanyName VARCHAR(255) NOT NULL,
   Phone VARCHAR(255)
 );
 
 CREATE TABLE Suppliers (
-  SupplierID INT PRIMARY KEY,
+  SupplierID CHAR(36) PRIMARY KEY,
   CompanyName VARCHAR(255),
   ContactName VARCHAR(255),
   ContactTitle VARCHAR(255),
@@ -20,7 +20,7 @@ CREATE TABLE Suppliers (
 );
 
 CREATE TABLE Department (
-  DepartmentID INT PRIMARY KEY,
+  DepartmentID CHAR(36) PRIMARY KEY,
   `Name` VARCHAR(255),
   GroupName VARCHAR(255),
   dept_head_id INT,
@@ -28,7 +28,7 @@ CREATE TABLE Department (
 );
 
 CREATE TABLE Employee (
-  EmployeeID INT PRIMARY KEY,
+  EmployeeID CHAR(36) PRIMARY KEY,
   NationalIDNumber VARCHAR(255),
   LoginID VARCHAR(255),
   OrganizationLevel INT,
@@ -42,7 +42,7 @@ CREATE TABLE Employee (
   SickLeaveHours INT,
   CurrentFlag INT,
   ModifiedDate TIMESTAMP,
-  DepartmentID INT,
+  DepartmentID CHAR(36),
   LastName VARCHAR(255),
   FirstName VARCHAR(255),
   TitleOfCourtesy VARCHAR(255),
@@ -70,20 +70,20 @@ CREATE TABLE Employee (
 );
 
 CREATE TABLE Region (
-  RegionID INT PRIMARY KEY,
+  RegionID CHAR(36) PRIMARY KEY,
   RegionDescription VARCHAR(255)
 );
 
 CREATE TABLE Territories (
-  TerritoryID varchar(255) PRIMARY KEY,
+  TerritoryID CHAR(36) PRIMARY KEY,
   TerritoryDescription VARCHAR(255),
-  RegionID INT,
+  RegionID CHAR(36),
   FOREIGN KEY (RegionID) REFERENCES Region(RegionID)
 );
 
 CREATE TABLE EmployeeTerritories (
-  EmployeeID INT,
-  TerritoryID VARCHAR(255),
+  EmployeeID CHAR(36),
+  TerritoryID CHAR(36),
   PRIMARY KEY (EmployeeID, TerritoryID),
   FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID),
   FOREIGN KEY (TerritoryID) REFERENCES Territories(TerritoryID)
@@ -91,7 +91,7 @@ CREATE TABLE EmployeeTerritories (
 
 CREATE TABLE Bonus (
   BonusID INT PRIMARY KEY AUTO_INCREMENT,
-  emp_id INT, 
+  emp_id CHAR(36), 
   bonus_date DATE,
   bonus_amount INT,
   FOREIGN KEY (emp_id) REFERENCES Employee(EmployeeID)
@@ -106,7 +106,7 @@ CREATE TABLE `State` (
 );
 
 CREATE TABLE Person (
-  PersonID INT PRIMARY KEY,
+  PersonID CHAR(36) PRIMARY KEY,
   PersonType VARCHAR(2),
   NameStyle INT,
   Title VARCHAR(255),
@@ -119,7 +119,7 @@ CREATE TABLE Person (
 );
 
 CREATE TABLE SalesTerritory (
-  TerritoryID INT PRIMARY KEY,
+  TerritoryID CHAR(36) PRIMARY KEY,
   `Name` VARCHAR(255),
   CountryRegionCode VARCHAR(255),
   `Group` VARCHAR(255),
@@ -131,18 +131,18 @@ CREATE TABLE SalesTerritory (
 );
 
 CREATE TABLE Store (
-  StoreID INT PRIMARY KEY,
+  StoreID CHAR(36) PRIMARY KEY,
   `Name` VARCHAR(255),
-  EmployeeID INT,
+  EmployeeID CHAR(36),
   ModifiedDate TIMESTAMP,
   FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
 );
 
 CREATE TABLE Customer (
-  CustomerID varchar(255) PRIMARY KEY ,
-  PersonID INT,
-  StoreID INT,
-  TerritoryID INT,
+  CustomerID CHAR(36) PRIMARY KEY,
+  PersonID CHAR(36),
+  StoreID CHAR(36),
+  TerritoryID CHAR(36),
   AccountNumber VARCHAR(255),
   CompanyName VARCHAR(255),
   ContactName VARCHAR(255),
@@ -165,26 +165,26 @@ CREATE TABLE Customer (
 );
 
 CREATE TABLE Address (
-  AddressID INT PRIMARY KEY,
+  AddressID CHAR(36) PRIMARY KEY,
   AddressLine1 VARCHAR(255),
   AddressLine2 VARCHAR(255),
   City VARCHAR(255),
   StateProvinceID INT,
   PostalCode VARCHAR(255),
   ModifiedDate TIMESTAMP,
-  PersonID INT,
+  PersonID CHAR(36),
   FOREIGN KEY (PersonID) REFERENCES Person(PersonID)
 );
 
 CREATE TABLE ProductCategory (
-  ProductCategoryID INT PRIMARY KEY,
+  ProductCategoryID CHAR(36) PRIMARY KEY,
   `Name` VARCHAR(255),
   ModifiedDate TIMESTAMP,
   `description` VARCHAR(255)
 );
 
 CREATE TABLE Product (
-  ProductID INT PRIMARY KEY,
+  ProductID CHAR(36) PRIMARY KEY,
   ProductName VARCHAR(255),
   ProductNumber VARCHAR(255),
   MakeFlag INT,
@@ -206,8 +206,8 @@ CREATE TABLE Product (
   SellEndDate TIMESTAMP,
   DiscontinuedDate TIMESTAMP,
   ModifiedDate TIMESTAMP,
-  ProductCategoryID INT,
-  SupplierID INT,
+  ProductCategoryID CHAR(36),
+  SupplierID CHAR(36),
   QuantityPerUnit VARCHAR(255),
   UnitPrice INT,
   UnitsInStock INT,
@@ -221,7 +221,7 @@ CREATE TABLE Product (
 );
 
 CREATE TABLE Vendor (
-  VendorID INT PRIMARY KEY,
+  VendorID CHAR(36) PRIMARY KEY,
   AccountNumber VARCHAR(255),
   `Name` VARCHAR(255),
   CreditRating INT,
@@ -232,11 +232,11 @@ CREATE TABLE Vendor (
 );
 
 CREATE TABLE PurchaseOrderHeader (
-  PurchaseOrderID INT PRIMARY KEY,
+  PurchaseOrderID CHAR(36) PRIMARY KEY,
   RevisionNumber INT,
   `Status` INT,
-  EmployeeID INT,
-  VendorID INT,
+  EmployeeID CHAR(36),
+  VendorID CHAR(36),
   OrderDate TIMESTAMP,
   ShipDate TIMESTAMP,
   SubTotal DECIMAL(65, 4),
@@ -249,11 +249,11 @@ CREATE TABLE PurchaseOrderHeader (
 );
 
 CREATE TABLE PurchaseOrderDetail (
-  PurchaseOrderID INT,
-  PurchaseOrderDetailID INT,
+  PurchaseOrderID CHAR(36),
+  PurchaseOrderDetailID CHAR(36),
   DueDate TIMESTAMP,
   OrderQty INT,
-  ProductID INT,
+  ProductID CHAR(36),
   UnitPrice DECIMAL(65, 4),
   LineTotal DECIMAL(65, 4),
   ReceivedQty NUMERIC(8,2),
@@ -266,7 +266,7 @@ CREATE TABLE PurchaseOrderDetail (
 );
 
 CREATE TABLE SalesOrderHeader (
-  SalesOrderID INT PRIMARY KEY,
+  SalesOrderID CHAR(36) PRIMARY KEY,
   RevisionNumber INT,
   OrderDate TIMESTAMP,
   DueDate TIMESTAMP,
@@ -276,11 +276,11 @@ CREATE TABLE SalesOrderHeader (
   SalesOrderNumber VARCHAR(255),
   PurchaseOrderNumber VARCHAR(255),
   AccountNumber VARCHAR(255),
-  CustomerID varchar(255),
-  EmployeeID INT,
-  TerritoryID INT,
+  CustomerID CHAR(36),
+  EmployeeID CHAR(36),
+  TerritoryID CHAR(36),
   BillToAddressID INT,
-  ShipToAddressID INT,
+  ShipToAddressID CHAR(36),
   ShipMethodID INT,
   CreditCardID INT,
   CreditCardApprovalCode VARCHAR(255),
@@ -309,9 +309,9 @@ CREATE TABLE SalesOrderHeader (
 );
 
 CREATE TABLE BillsOfMaterials (
-  BillOfMaterialsID INT PRIMARY KEY,
-  ProductAssemblyID INT,
-  ComponentID INT,
+  BillOfMaterialsID CHAR(36) PRIMARY KEY,
+  ProductAssemblyID CHAR(36),
+  ComponentID CHAR(36),
   StartDate TIMESTAMP,
   EndDate TIMESTAMP,
   UnitMeasureCode VARCHAR(255),
@@ -323,11 +323,11 @@ CREATE TABLE BillsOfMaterials (
 );
 
 CREATE TABLE SalesOrderDetail (
-  SalesOrderID INT,
-  SalesOrderDetailID INT,
+  SalesOrderID CHAR(36),
+  SalesOrderDetailID CHAR(36),
   CarrierTrackingNumber VARCHAR(255),
   OrderQty INT,
-  ProductID INT,
+  ProductID CHAR(36),
   UnitPrice DECIMAL(65, 4),
   UnitPriceDiscount DECIMAL(65, 4),
   LineTotal NUMERIC(28,6),
