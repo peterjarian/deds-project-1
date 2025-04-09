@@ -1,7 +1,7 @@
 -- Create the tables for the data warehouse
 
 CREATE TABLE DimProduct (
-    ProductID INT PRIMARY KEY, # Northwind & AenC & AdventureWorks
+    ProductID CHAR(36) PRIMARY KEY, # Northwind & AenC & AdventureWorks
     Name VARCHAR(255), # Northwind & AenC & AdventureWorks
     Color VARCHAR(50), # AenC & AdventureWorks
     Size VARCHAR(50), # AenC & AdventureWorks
@@ -17,14 +17,13 @@ CREATE TABLE DimProduct (
 );
 
 CREATE TABLE DimVendor ( 
-    VendorID INT PRIMARY KEY,
-    `Name` VARCHAR(255),	
-    ActiveFlag BOOLEAN
+    VendorID CHAR(36) PRIMARY KEY,
+    `Name` VARCHAR(255)
 );
 
 
 CREATE TABLE DimEmployee (
-    EmployeeID INT PRIMARY KEY,
+    EmployeeID CHAR(36) PRIMARY KEY,
     FirstName VARCHAR(255),
     LastName VARCHAR(255),
     Title VARCHAR(100),
@@ -33,23 +32,19 @@ CREATE TABLE DimEmployee (
 );
 
 CREATE TABLE DimCustomer (
-    CustomerID INT PRIMARY KEY,
-    `Address` VARCHAR(255),
+    CustomerID CHAR(36) PRIMARY KEY,
     City VARCHAR(100),
-    Zip VARCHAR(20),
-    `State` VARCHAR(50),
-    Country VARCHAR(100),
     Phone VARCHAR(50),
     FirstName VARCHAR(100),
     LastName VARCHAR(100)
 );
 
 CREATE TABLE FactInkoop (
-    PurchaseOrderID INT NOT NULL,
-    PurchaseOrderDetailID INT NOT NULL,
-    VendorID INT,
-    EmployeeID INT,
-    ProductID INT,
+    PurchaseOrderID CHAR(36) NOT NULL,
+    PurchaseOrderDetailID CHAR(36) NOT NULL,
+    VendorID CHAR(36),
+    EmployeeID CHAR(36),
+    ProductID CHAR(36),
     OrderDate TIMESTAMP,
     ShipDate TIMESTAMP,
     OrderQty INT,
@@ -70,17 +65,16 @@ CREATE TABLE FactInkoop (
 );
     
 CREATE TABLE FactVerkoop (
-    SalesOrderID INT,
-    SalesOrderDetailID INT,
+    SalesOrderID CHAR(36),
+    SalesOrderDetailID CHAR(36),
     OrderDate TIMESTAMP NOT NULL,
     ShipDate TIMESTAMP NULL,
-    CustomerID INT,
-    EmployeeID INT,
-    ProductID INT,
+    CustomerID CHAR(36),
+    EmployeeID CHAR(36),
+    ProductID CHAR(36),
     OrderQty INT,
     UnitPrice DECIMAL(10, 2),
     LineTotal DECIMAL(10, 2),
-    Discount DECIMAL(10, 2),
     SubTotal DECIMAL(10, 2),
     TaxAmt DECIMAL(10, 2),
     TotalDue DECIMAL(10, 2),

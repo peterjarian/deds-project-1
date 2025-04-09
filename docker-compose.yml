@@ -17,9 +17,9 @@ services:
       dockerfile: ./docker/northwind/Dockerfile
     ports:
       - "1433:1433"
-  mappings:
-    container_name: mappings
-    build:
-      dockerfile: ./docker/mappings/Dockerfile
-    ports:
-      - "3308:3306"
+  # mappings:
+# container_name: mappings
+# build:
+# dockerfile: ./docker/mappings/Dockerfile
+# ports:
+# - "3308:3306"
